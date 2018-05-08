@@ -5,6 +5,7 @@ A simple UI for the liwon data
 import wx
 import liwon
 import qindex
+import qna_panel
 
 
 class LiwonMainFrame(wx.Frame):
@@ -47,6 +48,11 @@ class LiwonMainFrame(wx.Frame):
         topics_list_box = wx.ListBox(panel, -1, choices=self.topics)
         hbox2.Add(topics_list_box, 1, flag=wx.EXPAND | wx.ALL, border=8)
         vbox.Add(hbox2, 1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP | wx.BOTTOM, border=10)
+
+        hbox3 = wx.BoxSizer(wx.HORIZONTAL)
+        question_panel = qna_panel.QnAPanel(panel, None)
+        hbox3.Add(question_panel, 1, flag=wx.EXPAND | wx.ALL, border=8)
+        vbox.Add(hbox3, 1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP | wx.BOTTOM, border=10)
 
         # vbox.Add((-1, 10))
         panel.SetSizer(vbox)
