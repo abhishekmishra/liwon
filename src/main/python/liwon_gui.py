@@ -18,7 +18,7 @@ class LiwonMainFrame(wx.Frame):
     def __init__(self, qindex, title):
         super(LiwonMainFrame, self).__init__(None,
                                              title=title,
-                                             size=(800, 600))
+                                             size=(1024, 768))
         self.qindex = qindex
         self.topics = []
         self.questions = []
@@ -50,12 +50,16 @@ class LiwonMainFrame(wx.Frame):
         vbox.Add(hbox2, 1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP | wx.BOTTOM, border=10)
 
         hbox3 = wx.BoxSizer(wx.HORIZONTAL)
-        question_panel = qna_panel.QnAPanel(panel, None)
-        hbox3.Add(question_panel, 1, flag=wx.EXPAND | wx.ALL, border=8)
+        self.add_questions(panel, hbox3)
         vbox.Add(hbox3, 1, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP | wx.BOTTOM, border=10)
 
         # vbox.Add((-1, 10))
         panel.SetSizer(vbox)
+
+    def add_questions(self, panel, hbox3):
+        for qna in self.qindex.qnas:
+            question_panel = qna_panel.QnAPanel(panel, qna)
+            hbox3.Add(question_panel, 1, flag=0, border=8)
 
     def set_state(self):
         self.topics.extend(self.qindex.topics.keys())
